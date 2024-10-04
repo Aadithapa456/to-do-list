@@ -33,10 +33,14 @@ function addItems() {
       alert("Enter something");
    } else {
       let taskId = Date.now(); // Unique ID using timestamp
-      let taskObj = { id: taskId, text: userInputValue };
+      let taskObj = {
+         id: taskId,
+         text: userInputValue,
+         state: "unchecked",
+      };
       createItems(taskObj);
       myToDoTask.push(taskObj);
-      storeInBrowser();
+      storeInBrowser(); //Updates the data in LocalStorage
    }
    userInput.value = "";
 }
@@ -49,7 +53,7 @@ function createItems(taskObj) {
       <div class="text-section">
          <div class="item item-1">
             <div class="list-text">
-               <input type="checkbox" id="list-${taskObj.id}">
+               <input type="checkbox" id="list-${taskObj.id}" ${taskObj.state}>
                <label for="list-${taskObj.id}">${taskObj.text}</label>
             </div>
          </div>
@@ -68,22 +72,33 @@ function createItems(taskObj) {
       myToDoTask = myToDoTask.filter((task) => task.id !== taskObj.id); // Remove by ID
       storeInBrowser();
    });
+   //Checking the checkbox State
+   let checkBox = newList.querySelector(`input[type = "checkbox"]`);
+   checkBox.addEventListener("change", () => {
+      taskObj.state = checkBox.checked;
+      if (taskObj.state) {
+         taskObj.state = "checked";
+      } else {
+         taskObj.state = "unchecked";
+      }
+      storeInBrowser(); //Updates the state in LocalStorage
+   });
 }
 
 function storeInBrowser() {
-   localStorage.setItem("tasks", JSON.stringify(myToDoTask));
+   localStorage.setItem("tasks", JSON.stringify(myToDoTask)); //Converts the array of tasks into JSON string
 }
 
 function retrieveData() {
    myToDoTask.forEach((task) => createItems(task));
 }
 
-addBtn.addEventListener("click", addItems);
+//Event Listeners
 userInput.addEventListener("keydown", (e) => {
    if (e.key === "Enter") {
       e.preventDefault();
       addItems();
    }
 });
-
+addBtn.addEventListener("click", addItems);
 document.addEventListener("DOMContentLoaded", retrieveData);
