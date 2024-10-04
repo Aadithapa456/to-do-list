@@ -1,26 +1,3 @@
-// let lists = document.querySelectorAll(".list");
-// let leftBox = document.querySelector(".items-1");
-// let rightBox = document.querySelector(".items-2");
-// let list;
-// for (list of lists) {
-//    list.addEventListener("dragstart", (e) => {
-//       let selected = e.target;
-//       rightBox.addEventListener("dragover", (e) => {
-//          e.preventDefault();
-//       });
-//       rightBox.addEventListener("drop", (e) => {
-//          rightBox.appendChild(selected);
-//          selected = null;
-//       });
-//       leftBox.addEventListener("dragover", (e) => {
-//          e.preventDefault();
-//       });
-//       leftBox.addEventListener("drop", (e) => {
-//          leftBox.appendChild(selected);
-//          selected = null;
-//       });
-//    });
-// }
 // Getting the user input
 let userInput = document.querySelector("#user-input");
 let addBtn = document.querySelector(".add");
@@ -48,6 +25,7 @@ function addItems() {
 function createItems(taskObj) {
    let newList = document.createElement("div");
    newList.className = "todo-items";
+   newList.setAttribute("draggable", "true");
    newList.dataset.id = taskObj.id;
    newList.innerHTML = `
       <div class="text-section">
@@ -83,6 +61,7 @@ function createItems(taskObj) {
       }
       storeInBrowser(); //Updates the state in LocalStorage
    });
+   dragAndDrop(newList);
 }
 
 function storeInBrowser() {
@@ -91,6 +70,32 @@ function storeInBrowser() {
 
 function retrieveData() {
    myToDoTask.forEach((task) => createItems(task));
+}
+function dragAndDrop(newList) {
+   let lists = newList.querySelectorAll(".list-text");
+   console.log(lists);
+   let list;
+   for (list of lists) {
+      console.log(list);
+      list.addEventListener("dragstart", (e) => {
+         // let selected = e.target;
+         // rightBox.addEventListener("dragover", (e) => {
+         //    e.preventDefault();
+         // });
+         // rightBox.addEventListener("drop", (e) => {
+         //    rightBox.appendChild(selected);
+         //    selected = null;
+         // });
+         // leftBox.addEventListener("dragover", (e) => {
+         //    e.preventDefault();
+         // });
+         // leftBox.addEventListener("drop", (e) => {
+         //    leftBox.appendChild(selected);
+         //    selected = null;
+         // });
+         console.log(e.target)
+      });
+   }
 }
 
 //Event Listeners
