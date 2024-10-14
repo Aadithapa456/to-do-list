@@ -6,6 +6,7 @@ let myToDoTask = JSON.parse(localStorage.getItem("tasks")) || [];
 let urgentBtn = document.querySelector(".urgent-btn");
 let importantBtn = document.querySelector(".important-btn");
 let lowPriorityBtn = document.querySelector(".low-btn");
+let clearSortBtn = document.querySelector(".clear-btn");
 //Dropdown Area
 let dropDownContainer = document.querySelector(".dropdown-select-item");
 let mainItem = document.querySelector(".select");
@@ -107,32 +108,37 @@ function prioritySorting(sortType, requiredTask) {
    //       alert("Urgent");
    //    }
    // }
-   console.log(requiredTask);
-   let currentToDoItems = document.querySelectorAll(".todo-items");
-   console.log(currentToDoItems);
    if (sortType == "Urgent") {
-      currentToDoItems.forEach((currItem) => {
-         currItem.style.display = "none";
-      });
+      hideAllTasks();
       requiredTask.forEach((reqTask) => {
          reqTask.style.display = "flex";
       });
    } else if (sortType == "Important") {
-      currentToDoItems.forEach((currItem) => {
-         currItem.style.display = "none";
-      });
+      hideAllTasks();
       requiredTask.forEach((reqTask) => {
          reqTask.style.display = "flex";
       });
    } else if (sortType == "Low") {
-      currentToDoItems.forEach((currItem) => {
-         currItem.style.display = "none";
-      });
+      hideAllTasks();
       requiredTask.forEach((reqTask) => {
          reqTask.style.display = "flex";
       });
+   } else if (sortType == "Clear") {
+      showAllTasks();
    }
    // console.log(myToDoTask);
+}
+function hideAllTasks() {
+   let currentToDoItems = document.querySelectorAll(".todo-items");
+   currentToDoItems.forEach((currItem) => {
+      currItem.style.display = "none";
+   });
+}
+function showAllTasks() {
+   let currentToDoItems = document.querySelectorAll(".todo-items");
+   currentToDoItems.forEach((currItem) => {
+      currItem.style.display = "flex";
+   });
 }
 // function dragAndDrop(newList) {
 //    let lists = newList.querySelectorAll(".list-text");
@@ -179,6 +185,9 @@ importantBtn.addEventListener("click", () => {
 lowPriorityBtn.addEventListener("click", () => {
    let lowPriorityTask = document.querySelectorAll(".low");
    prioritySorting("Low", lowPriorityTask);
+});
+clearSortBtn.addEventListener("click", () => {
+   prioritySorting("Clear", null);
 });
 addBtn.addEventListener("click", addItems);
 document.addEventListener("DOMContentLoaded", retrieveData);
