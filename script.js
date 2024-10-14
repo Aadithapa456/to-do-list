@@ -29,6 +29,7 @@ document.addEventListener("click", (e) => {
 function addItems() {
    let userInputValue = userInput.value.trim();
    let priority = mainItem.innerHTML.trim().toLowerCase();
+   mainItem.innerHTML = "Select priority"
    console.log(priority);
    if (priority == "low priority") {
       priority = "low";
@@ -102,31 +103,24 @@ function retrieveData() {
    myToDoTask.forEach((task) => createItems(task));
 }
 function prioritySorting(sortType, requiredTask) {
-   // for (const task in myToDoTask) {
-   //    if (myToDoTask[task].priority == "Urgent") {
-   //       console.log(task);
-   //       alert("Urgent");
-   //    }
-   // }
    if (sortType == "Urgent") {
       hideAllTasks();
-      requiredTask.forEach((reqTask) => {
-         reqTask.style.display = "flex";
-      });
+      showReqTask(requiredTask);
    } else if (sortType == "Important") {
       hideAllTasks();
-      requiredTask.forEach((reqTask) => {
-         reqTask.style.display = "flex";
-      });
+      showReqTask(requiredTask);
    } else if (sortType == "Low") {
       hideAllTasks();
-      requiredTask.forEach((reqTask) => {
-         reqTask.style.display = "flex";
-      });
+      showReqTask(requiredTask);
    } else if (sortType == "Clear") {
       showAllTasks();
    }
    // console.log(myToDoTask);
+}
+function showReqTask(requiredTask) {
+   requiredTask.forEach((reqTask) => {
+      reqTask.style.display = "flex";
+   });
 }
 function hideAllTasks() {
    let currentToDoItems = document.querySelectorAll(".todo-items");
