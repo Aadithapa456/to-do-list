@@ -17,13 +17,32 @@
 <body>
     <div class="todo-container">
         <div class="sidebar">
-
+            <div class="priority">
+                <button class="urgent-btn">Urgent</button>
+                <button class="important-btn">Important</button>
+                <button class="low-btn">Low priority</button>
+            </div>
         </div>
         <div class="main">
             <div class="add-list">
                 <form>
                     <input type="text" name="" id="user-input">
                 </form>
+                <div class="dropdown-container">
+                    <div class="dropdown-select-item">
+                        <span class="select">
+                            Select priority
+                        </span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div class="dropdown-options">
+                        <ul id="option">
+                            <li>Urgent</li>
+                            <li>Important</li>
+                            <li>Low Priority</li>
+                        </ul>
+                    </div>
+                </div>
                 <button class="add">Add<i class="fa-solid fa-plus"></i></button>
             </div>
             <!-- <div class="todo-items">
@@ -41,4 +60,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
