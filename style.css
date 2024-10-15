@@ -189,6 +189,7 @@ ul {
    display: flex;
    flex-direction: column;
    padding: 20px;
+   margin-bottom: 3.5rem;
 }
 .todo-items {
    /* border: 2px solid red; */
@@ -280,7 +281,7 @@ input[type="checkbox"]:checked + label {
       align-items: normal;
       padding: 1.5rem 4.5rem;
    }
-   .add-list input{
+   .add-list input {
       width: 100%;
    }
    .todo-items {
