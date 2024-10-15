@@ -32,6 +32,7 @@ html {
    text-align: center;
    padding: 0 2.4rem;
    user-select: none;
+   max-width: 250px;
 }
 .priority button {
    border: none;
@@ -57,7 +58,6 @@ html {
    background-color: #add8e6;
 }
 .main {
-   border: 2px solid black;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -182,9 +182,18 @@ ul {
 .add-list button:hover {
    background-color: #1e88e5;
 }
+.to-do-item-container {
+   /* background-color: red; */
+   width: 100%;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   padding: 20px;
+}
 .todo-items {
    /* border: 2px solid red; */
    margin-top: 40px;
+   align-self: center;
    padding: 0.7rem 1.6rem;
    width: 50%;
    display: flex;
@@ -197,6 +206,9 @@ ul {
    border-bottom-right-radius: 120px 24px;
    line-height: 28px;
    box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
+}
+.todo-items.dragging {
+   opacity: 0.5; /* Make it slightly transparent */
 }
 .item {
    display: flex;
@@ -262,10 +274,46 @@ input[type="checkbox"]:checked + label {
    html {
       font-size: 48.5%;
    }
-   .add-list input {
-      width: 20rem;
+   .add-list {
+      flex-direction: column;
+      width: 100%;
+      align-items: normal;
+      padding: 1.5rem 4.5rem;
+   }
+   .add-list input{
+      width: 100%;
    }
    .todo-items {
       width: 80%;
+   }
+   .todo-container {
+      flex-direction: column;
+   }
+   .sidebar {
+      order: 2;
+      width: 100%;
+      height: auto;
+      gap: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: auto;
+   }
+   .priority {
+      display: grid;
+      grid-template-columns: repeat(2, 150px);
+      justify-items: center;
+      align-items: center;
+      align-content: center;
+      margin: 1rem 0;
+   }
+   .priority button {
+      width: 100%; /* Full width of the grid cell */
+      white-space: nowrap; /* Prevent text from wrapping */
+      overflow: hidden; /* Hide overflowing text */
+      text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+   }
+   .main {
+      order: 1;
    }
 }

@@ -1,7 +1,7 @@
 // Getting the user input
 let userInput = document.querySelector("#user-input");
 let addBtn = document.querySelector(".add");
-let itemContainer = document.querySelector(".main");
+let itemContainer = document.querySelector(".to-do-item-container");
 let myToDoTask = JSON.parse(localStorage.getItem("tasks")) || [];
 let urgentBtn = document.querySelector(".urgent-btn");
 let importantBtn = document.querySelector(".important-btn");
@@ -92,7 +92,6 @@ function createItems(taskObj) {
       }
       storeInBrowser(); //Updates the state in LocalStorage
    });
-   // dragAndDrop(newList);
 }
 
 function storeInBrowser() {
@@ -134,41 +133,6 @@ function showAllTasks() {
       currItem.style.display = "flex";
    });
 }
-// function dragAndDrop(newList) {
-//    let lists = newList.querySelectorAll(".list-text");
-//    console.log(lists);
-//    let list;
-//    for (list of lists) {
-//       console.log(list);
-//       list.addEventListener("dragstart", (e) => {
-//          let selected = e.target;
-//          rightBox.addEventListener("dragover", (e) => {
-//             e.preventDefault();
-//          });
-//          rightBox.addEventListener("drop", (e) => {
-//             rightBox.appendChild(selected);
-//             selected = null;
-//          });
-//          leftBox.addEventListener("dragover", (e) => {
-//             e.preventDefault();
-//          });
-//          leftBox.addEventListener("drop", (e) => {
-//             leftBox.appendChild(selected);
-//             selected = null;
-//          });
-//          console.log(e.target);
-//       });
-//    }
-// }
-function dragAndDrop() {
-   const draggables = document.querySelectorAll(".todo-items");
-   draggables.forEach((draggable) => {
-      draggable.addEventListener("dragstart", () => {
-         console.log("Started");
-      });
-   });
-}
-
 //Event Listeners
 userInput.addEventListener("keydown", (e) => {
    if (e.key === "Enter") {
