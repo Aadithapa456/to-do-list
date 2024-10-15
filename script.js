@@ -30,7 +30,6 @@ function addItems() {
    let userInputValue = userInput.value.trim();
    let priority = mainItem.innerHTML.trim().toLowerCase();
    mainItem.innerHTML = "Select priority";
-   console.log(priority);
    if (priority == "low priority") {
       priority = "low";
    }
@@ -55,7 +54,7 @@ function addItems() {
 
 function createItems(taskObj) {
    let newList = document.createElement("div");
-   newList.className = "todo-items " + taskObj.priority;
+   newList.className = "todo-items " + taskObj.priority + " sortable-item";
    newList.setAttribute("draggable", "true");
    newList.dataset.id = taskObj.id;
    newList.innerHTML = `
@@ -92,6 +91,7 @@ function createItems(taskObj) {
       }
       storeInBrowser(); //Updates the state in LocalStorage
    });
+   sort();
 }
 
 function storeInBrowser() {
@@ -157,3 +157,45 @@ clearSortBtn.addEventListener("click", () => {
 });
 addBtn.addEventListener("click", addItems);
 document.addEventListener("DOMContentLoaded", retrieveData);
+function sort() {
+   let sortableList = document.querySelector(".to-do-item-container");
+   let draggedItem = null;
+
+   sortableList.addEventListener("dragstart", function (e) {
+      draggedItem = e.target;
+      e.target.style.opacity = 0.5;
+   });
+   sortableList.addEventListener("dragend", function (e) {
+      e.target.style.opacity = "";
+   });
+
+   sortableList.addEventListener("dragover", function (e) {
+      e.preventDefault();
+   });
+
+   sortableList.addEventListener("dragenter", function (e) {
+      if (e.target.classList.contains("sortable-item")) {
+         e.target.style.border = "1px dashed #000";
+      }
+   });
+
+   sortableList.addEventListener("dragleave", function (e) {
+      if (e.target.classList.contains("sortable-item")) {
+         e.target.style.border = "";
+      }
+   });
+
+   sortableList.addEventListener("drop", function (e) {
+      e.preventDefault();
+      if (e.target.classList.contains("sortable-item")) {
+         e.target.style.border = "";
+         const rect = e.target.getBoundingClientRect();
+         const offset = e.clientY - rect.top;
+         if (offset > e.target.offsetHeight / 2) {
+            sortableList.insertBefore(draggedItem, e.target.nextSibling);
+         } else {
+            sortableList.insertBefore(draggedItem, e.target);
+         }
+      }
+   });
+}
