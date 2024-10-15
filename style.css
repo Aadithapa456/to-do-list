@@ -189,10 +189,9 @@ ul {
    display: flex;
    flex-direction: column;
    padding: 20px;
-   margin-bottom: 3.5rem;
+   margin-bottom: 2.5rem;
 }
 .todo-items {
-   /* border: 2px solid red; */
    margin-top: 40px;
    align-self: center;
    padding: 0.7rem 1.6rem;
@@ -207,9 +206,6 @@ ul {
    border-bottom-right-radius: 120px 24px;
    line-height: 28px;
    box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
-}
-.todo-items.dragging {
-   opacity: 0.5; /* Make it slightly transparent */
 }
 .item {
    display: flex;
