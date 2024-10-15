@@ -29,14 +29,14 @@ document.addEventListener("click", (e) => {
 function addItems() {
    let userInputValue = userInput.value.trim();
    let priority = mainItem.innerHTML.trim().toLowerCase();
-   mainItem.innerHTML = "Select priority"
+   mainItem.innerHTML = "Select priority";
    console.log(priority);
    if (priority == "low priority") {
       priority = "low";
    }
    if (userInputValue === "") {
       alert("Enter something");
-   } else if (priority == "Select priority") {
+   } else if (priority == "Select priority" || priority == "select priority") {
       alert("Select the priority");
    } else {
       let taskId = Date.now(); // Unique ID using timestamp
@@ -160,6 +160,14 @@ function showAllTasks() {
 //       });
 //    }
 // }
+function dragAndDrop() {
+   const draggables = document.querySelectorAll(".todo-items");
+   draggables.forEach((draggable) => {
+      draggable.addEventListener("dragstart", () => {
+         console.log("Started");
+      });
+   });
+}
 
 //Event Listeners
 userInput.addEventListener("keydown", (e) => {
